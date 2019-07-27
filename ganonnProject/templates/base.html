@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>    ​
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    ​
+    <style>
+        body {
+            background-color: rgb(54, 59, 59);
+            /*전체배경색*/
+        }
+
+        .navbar-default {
+            border: 0px;
+        }
+
+        .navbar-brand {
+            /*게논 이름*/
+            font-size: 50px;
+        }
+
+        .container-fluid {
+            /*상단바*/
+            background-color: rgb(7, 250, 250);
+            padding-right: 1%;
+        }
+
+/*         
+        .navbar-header {
+            게논 이름 div
+        } */
+
+        /* .form-group{
+    } */
+        #login {
+            margin-top: 5%;
+        }
+
+        /* #register{
+    } */
+    </style>
+</head>
+
+<body>
+    <!--상단 네브 바-->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'home'%}">GANNON</a>
+            </div>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="당신의 인생게임은?">
+                </div>
+                <button type="submit" class="btn btn-default">제출</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <a type="button" class="btn btn-info" id="login" href="{% url 'users:login' %}">로그인</a>
+                <a type="button" class="btn btn-success" id="login" href="{% url 'users:login' %}">회원가입</a>
+                <!--<li id="login"><a href="#">로그인</a></li>
+                      <li id="register"><a href="#">회원가입</a></li>-->
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <div class="container">
+    
+    {% block content %}
+    {% endblock %}
+    </div>
+    ​
+</body>
+​
+</html>

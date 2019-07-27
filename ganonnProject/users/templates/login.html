@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+
+{% block content %}
+
+<form action="#" method="POST">
+
+    <input  type="text" id="username" name="username" />
+    <input  type="password" id="password" name="password" />
+    <input type="submit" value="전송" />
+  </form>
+
+  <br>
+  <a href="{% provider_login_url 'google' %}">구글 로그인</a>
+  <br>
+  <br>
+  <a href="{% provider_login_url 'facebook' %}">페이스북 로그인</a>
+
+
+
+{% endblock %}
