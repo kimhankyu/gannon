@@ -1,1 +1,231 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Page</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:700&display=swap" rel="stylesheet">
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <style>
+        html,
+        body,
+        article {
+            height: 100%;
+            bottom: 0px;
+        }
+
+        body {
+            background-color: #363B3B;
+            margin: 0;
+        }
+
+        .aTitleBox {
+            color: white;
+            height: 20px;
+            margin-top: 0px;
+        }
+
+        nav {
+            display: flex;
+            margin: 10px;
+        }
+
+        .whiteBox {
+            width: 85%;
+            padding: 5px;
+        }
+
+        .whiteBox2 {
+            height: 100px;
+        }
+
+        .whiteBox3 {
+            height: 70px;
+        }
+
+        .signBtBox {
+            padding-top: 5px;
+            background-color: #8CF7EF;
+            border-radius: 5px;
+            width: 65px;
+            text-align: center;
+
+        }
+
+        #signBt {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            border-style: none;
+            font-weight: bold;
+            font-size: 15px;
+            color: #363B3B;
+        }
+        #signBt:hover{
+            text-decoration: none;
+        }
+
+        .myPageBtBox {
+            padding-top: 5px;
+        }
+
+        #loginBt {
+            border-style: none;
+            background-color: #363B3B;
+            height: 60px;
+            color: white;
+            font-size: 15px;
+            padding-top: 10px;
+            margin-left: 10px;
+        }
+        #loginBt:hover{
+            text-decoration:none;
+        }
+
+        .loginBtBox{
+            margin-top : 3px;
+        }
+
+        #Title {
+            font-size: 30px;
+            display: inline;
+        }
+
+        .searchBox {
+            text-align: center;
+            width: 100%;
+            padding: 5px;
+
+        }
+
+        #searchBar {
+            height: 40px;
+            width: 50%;
+            border-radius: 3px;
+            border-style: none;
+        }
+
+        .font_size {
+            text-align: center;
+            font-size: 68px;
+            color: white;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        #carouselBox {
+            height: 600px;
+        }
+
+        #carousel1 {
+            height: 600px;
+        }
+
+        footer {
+            background-color: black;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="whiteBox">
+        </div>
+        {% if user.is_authenticated %}
+        <div class="signBtBox">
+            <a href="{% url 'users:signup' %}" id="signBt">마이페이지</a>
+        </div>
+        <div class="loginBtBox">
+            <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+            <form id="logout" method="POST" action="{% url 'users:logout' %}">
+                {% csrf_token %} <input type="hidden"/>
+            </form>
+        </div>
+        {% else %}
+        <div class="signBtBox">
+            <a href="{% url 'users:signup' %}" id="signBt">회원가입</a>
+        </div>
+        <div class="loginBtBox">
+            <a href="{% url 'users:login' %}" id="loginBt">로그인</a>
+        </div>
+        {% endif %}
+    </nav>
+    <article>
+        <div>
+            <p class="font_size">GANNON</p>
+        </div>
+        <div class="whiteBox3">
+        </div>
+        <div class="searchBox">
+            <input type="textBox" id="searchBar" placeholder="    게임제목, 게임사, 디렉터를 검색하세요.">
+        </div>
+        <div class="whiteBox2">
+        </div>
+
+        <div id="carouselBox">
+            <div id="carousel1" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel1" data-slide-to="1"></li>
+                    <li data-target="#carousel1" data-slide-to="2"></li>
+                    <li data-target="#carousel1" data-slide-to="3"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <!-- 사진으로 수정 -->
+                <div align=center>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <iframe src="https://www.youtube.com/embed/M_9eHBGBJA0" frameborder="0" width="100%"
+                                height="600px"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+
+                        <div class="item">
+                            <iframe src="https://www.youtube.com/embed/M_9eHBGBJA0" frameborder="0" width="100%"
+                                height="600px"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+
+                        <div class="item">
+                            <iframe src="https://www.youtube.com/embed/M_9eHBGBJA0" frameborder="0" width="100%"
+                                height="600px"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+
+                        <div class="item">
+                            <iframe src="https://www.youtube.com/embed/M_9eHBGBJA0" frameborder="0" width="100%"
+                                height="600px"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel1" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel1" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </article>
+</body>
+
+</html>

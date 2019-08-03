@@ -1,78 +1,109 @@
 <!DOCTYPE html>
-
 <html>
-
-<head>    ​
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    ​
-    <style>
-        body {
-            background-color: rgb(54, 59, 59);
-            /*전체배경색*/
-        }
-
-        .navbar-default {
-            border: 0px;
-        }
-
-        .navbar-brand {
-            /*게논 이름*/
-            font-size: 50px;
-        }
-
-        .container-fluid {
-            /*상단바*/
-            background-color: rgb(7, 250, 250);
-            padding-right: 1%;
-        }
-
-/*         
-        .navbar-header {
-            게논 이름 div
-        } */
-
-        /* .form-group{
-    } */
-        #login {
-            margin-top: 5%;
-        }
-
-        /* #register{
-    } */
-    </style>
-</head>
-
-<body>
-    <!--상단 네브 바-->
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{% url 'home'%}">GANNON</a>
+   <head>
+       <title>My Page</title>
+       <style>
+           body{
+               background-color : #363B3B;
+               margin : 0;
+           }
+           .aTitleBox{
+               color : white;
+               height : 20px;
+               margin-top : 0px;
+           }
+           nav{
+               display : flex;
+               margin : 10px;
+           }
+           .searchBox{
+               text-align : center;
+               width : 70%;
+               padding : 5px;
+           }
+           .myPageBtBox{
+               width : 80px;
+               background-color : #8CF7EF;
+               text-align : center;
+               border-radius : 5px;
+               height: 28px;
+               margin-top : 6px;
+               padding-top : 3px;
+           }
+           #myPageBt{
+               width : 60px;
+               border-radius : 5px;
+               border-style : none;
+               font-weight : bold;
+               color : #363B3B;
+               
+           }
+           #myPageBt:link, #myPageBt:hover, #myPageBt:visited{
+               text-decoration : none;
+           }
+           .logOutBtBox{
+               width : 80px;
+               text-align : center;
+               height: 25px;
+               margin-top : 10px;
+           }
+           #logOutBt{
+               border-style : none;
+               background-color :  #363B3B;
+               height : 30px;
+               color : white;
+               font-weight: bold;
+           }
+            #logOutBt:link, #logOutBt:hover, #logOutBt:visited{
+               text-decoration : none;
+           }
+           #Title{
+               font-size : 30px;
+               color : white;
+               display : inline;
+           }
+           #searchBar{
+               height : 30px;
+               width : 80%;
+               border-radius : 3px;
+               border-style : none;
+              
+           }
+           #Title:link, #Title:hover, #Title:visited{
+               text-decoration : none;
+           }
+       </style>
+   </head>
+   <body>
+        <nav>
+            <div class = "aTitleBox">
+                <a id="Title" href="{% url 'home'%}">GANNON</a>
             </div>
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="당신의 인생게임은?">
-                </div>
-                <button type="submit" class="btn btn-default">제출</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <a type="button" class="btn btn-info" id="login" href="{% url 'users:login' %}">로그인</a>
-                <a type="button" class="btn btn-success" id="login" href="{% url 'users:login' %}">회원가입</a>
-                <!--<li id="login"><a href="#">로그인</a></li>
-                      <li id="register"><a href="#">회원가입</a></li>-->
-            </ul>
-        </div>
-        </div>
-    </nav>
-
-    <div class="container">
-    
-    {% block content %}
-    {% endblock %}
-    </div>
-    ​
-</body>
-​
+            <div class = "searchBox">
+                <input type="textBox" id="searchBar">
+            </div>
+            {% if user.is_authenticated %}
+            <div class="myPageBtBox">
+                <a href="{% url 'users:mypage' %}" id="myPageBt">마이페이지</a>
+            </div>
+            <div class="logOutBtBox">
+                <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                <form id="logout" method="POST" action="{% url 'users:logout' %}">
+                    {% csrf_token %} <input type="hidden"/>
+                </form>
+            </div>
+            {% else %}
+            <div class="myPageBtBox">
+                <a href="{% url 'users:signup' %}" id="myPageBt">회원가입</a>
+            </div>
+            <div class="logOutBtBox">
+                <a href="{% url 'users:login' %}" id="logOutBt">로그인</a>
+            </div>
+            {% endif %}
+        </nav>
+        <article>
+            {% block content %}
+            {% endblock%}
+        </article>
+   </body>
 </html>
